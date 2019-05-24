@@ -33,17 +33,18 @@ document.addEventListener('keypress', (event) => {
         //  Replace underscore with correct letter after guess
         underscore[chosenWord.indexOf(keyword)] = keyword;
         docUnderscore[0].innerHTML = underscore.join(' ');
-        rightGuess[0].innerHTML = rightGuess.join(' ');
+        docRightGuess[0].innerHTML = rightWord;
 
         //  Does user's word match?
-        if (underscore.join(' ') == chosenWord) {
+        if (underscore.join('') == chosenWord) {
             alert('Winner!');
         }
     } else {
-        wrongword.push(keyword);
+        wrongWord.push(keyword);
+        docWrongGuess[0].innerHTML = wrongWord;
     }
 });
 
 
 
-underscore[0].innerHTML = generateUnderscore().join(' ');
+docUnderscore[0].innerHTML = generateUnderscore().join(' ');
