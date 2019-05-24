@@ -6,28 +6,44 @@ const word = ['suzuki', 'yamaha', 'kawasaki', 'evo', 'supra', 'sti', 'triumph', 
 //  Choose random word
 let randNum = Math.floor(Math.random() * word.length);
 let chosenWord = word[randNum];
-let underScore = [];
+let rightWord = [];
+let wrongWord = [];
+let underscore = [];
+
+//  Dom manip
+let docUnderscore = document.getElementsByClassName('underscore');
+let docRightGuess = document.getElementsByClassName('rightGuess');
+let docWrongGuess = document.getElementsByClassName('wrongGuess');
 
 //  Create underscores based on length of word
-let createUnderscore = () => {
+let generateUnderscore = () => {
     for (let i = 0; i < chosenWord.length; i++) {
-        underScore.push('_');
+        underscore.push('_');
     }
-    return underScore;
+    return underscore;
 }
 
-console.log(createUnderscore());
-
-//  Check if guess is right
+//  Listen for guess
 document.addEventListener('keypress', (event) => {
     let keyword = String.fromCharCode(event.keyCode);
-    console.log(chosenWord.indexOf(keyword));
-    if (keyword.indexOf(chosenWord) > -1) {
-        console.log(true);
+    //  If user guess is right
+    if (chosenWord.indexOf(keyword) > -1) {
+        //  Add to right words array
+        rightWord.push(keyword);
+        //  Replace underscore with correct letter after guess
+        underscore[chosenWord.indexOf(keyword)] = keyword;
+        docUnderscore[0].innerHTML = underscore.join(' ');
+        rightGuess[0].innerHTML = rightGuess.join(' ');
+
+        //  Does user's word match?
+        if (underscore.join(' ') == chosenWord) {
+            alert('Winner!');
+        }
+    } else {
+        wrongword.push(keyword);
     }
 });
 
 
-//  If guess is right, push to correct array
 
-//  If wrong, push to wrong array
+underscore[0].innerHTML = generateUnderscore().join(' ');
