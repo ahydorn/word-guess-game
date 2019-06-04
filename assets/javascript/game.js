@@ -9,7 +9,7 @@ let chosenWord = word[randNum];
 let rightWord = [];
 let wrongWord = [];
 let underscore = [];
-let numberGuesses = 7;
+let wrongGuesses = 0;
 
 //  Dom manip
 let docUnderscore = document.getElementsByClassName('underscore');
@@ -27,6 +27,8 @@ let generateUnderscore = () => {
 //  Listen for guess
 document.addEventListener('keypress', (event) => {
     let keyword = String.fromCharCode(event.keyCode);
+
+
 
     //  If user guess is right
     if (chosenWord.indexOf(keyword) > -1) {
@@ -48,20 +50,19 @@ document.addEventListener('keypress', (event) => {
         docWrongGuess[0].innerHTML = wrongWord;
     }
 
-    // Set initial number of guesses to 7
-    for (let j = 7; j >= 0; j--) {
-        // When guesses === 0, reset game
-        console.log(j);
-        if (j === 0) {
-            alert("You lose!");
-        }
-    }
+    // If guess is wrong
+    // wrongGuesses++
+    // If wrongGuesses = 7, alert "You lose!"
+
 
 });
 
 // TODO //
-// Only give players 7 guesses
+// Start players with 7 incorrect guesses
+// guessesRemaining-- on wrongGuess only
 // End game after 7 guesses
+
+
 
 
 docUnderscore[0].innerHTML = generateUnderscore().join('_');
